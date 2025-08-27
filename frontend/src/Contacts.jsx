@@ -63,7 +63,7 @@ export default function Contacts() {
     <div className="container mx-auto p-6">
 
       {/* Título con fondo gris */}
-      <div className="mb-6 p-4 bg-gray-200 rounded-lg shadow">
+      <div className="mb-6 p-4 bg-gray-400 rounded-lg shadow">
         <h1 className="text-4xl font-bold text-gray-800 text-center">Contacts Dashboard</h1>
       </div>
 
@@ -91,7 +91,7 @@ export default function Contacts() {
       <div className="overflow-x-auto shadow-lg rounded-lg">
         <table className="min-w-full bg-white divide-y divide-gray-200">
           {/* Fila de títulos más clara */}
-          <thead className="bg-gray-100 text-gray-800">
+          <thead className="bg-gray-200 text-gray-800">
             <tr>
               {['First Name', 'Last Name', 'Email', 'Country', 'Actions'].map((header) => (
                 <th key={header} className="px-6 py-3 text-center uppercase tracking-wider">
