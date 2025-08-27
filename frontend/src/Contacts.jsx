@@ -61,7 +61,11 @@ export default function Contacts() {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-6 text-gray-800">Contacts Dashboard</h1>
+
+      {/* Título con fondo gris */}
+      <div className="mb-6 p-4 bg-gray-200 rounded-lg shadow">
+        <h1 className="text-4xl font-bold text-gray-800 text-center">Contacts Dashboard</h1>
+      </div>
 
       {/* Formulario */}
       <div className="mb-6 flex flex-wrap gap-3">
@@ -86,7 +90,8 @@ export default function Contacts() {
       {/* Tabla */}
       <div className="overflow-x-auto shadow-lg rounded-lg">
         <table className="min-w-full bg-white divide-y divide-gray-200">
-          <thead className="bg-gradient-to-r from-gray-800 to-gray-900 text-white">
+          {/* Fila de títulos más clara */}
+          <thead className="bg-gray-100 text-gray-800">
             <tr>
               {['First Name', 'Last Name', 'Email', 'Country', 'Actions'].map((header) => (
                 <th key={header} className="px-6 py-3 text-center uppercase tracking-wider">
@@ -99,9 +104,7 @@ export default function Contacts() {
             {contacts.map((c) => (
               <tr
                 key={c._id}
-                className={`transition-colors ${
-                  editId === c._id ? 'bg-blue-50' : 'hover:bg-gray-100'
-                }`}
+                className={`transition-colors ${editId === c._id ? 'bg-blue-50' : 'hover:bg-gray-100'}`}
               >
                 <td className="px-6 py-3 text-gray-800">{c.firstName}</td>
                 <td className="px-6 py-3 text-gray-800">{c.lastName}</td>
