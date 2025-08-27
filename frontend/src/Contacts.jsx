@@ -5,9 +5,11 @@ export default function Contacts() {
   const [editId, setEditId] = useState(null);
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', country: '' });
 
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
   // Traer todos los contactos
   const fetchContacts = async () => {
-    const res = await fetch('http://localhost:5000/contacts');
+    const res = await fetch(`${BACKEND_URL}/contacts`);
     const data = await res.json();
     setContacts(data);
   };
@@ -22,14 +24,14 @@ export default function Contacts() {
     if (!firstName || !lastName || !email || !country) return alert('Completa todos los campos');
 
     if (editId) {
-      await fetch(`http://localhost:5000/contacts/${editId}`, {
+      await fetch(`${BACKEND_URL}/contacts/${editId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
       setEditId(null);
     } else {
-      await fetch('http://localhost:5000/contacts', {
+      await fetch(`${BACKEND_URL}/contacts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
@@ -53,7 +55,7 @@ export default function Contacts() {
 
   // Borrar contacto
   const deleteContact = async (id) => {
-    await fetch(`http://localhost:5000/contacts/${id}`, { method: 'DELETE' });
+    await fetch(`${BACKEND_URL}/contacts/${id}`, { method: 'DELETE' });
     fetchContacts();
   };
 
