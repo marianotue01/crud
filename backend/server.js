@@ -6,20 +6,14 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000; // Puerto dinámico para Render
 
 // Middlewares
 app.use(cors());
 app.use(express.json());
 
-// Conectar MongoDB Atlas
-mongoose.connect(
-  'mongodb+srv://marianotue01:8DkDywXSXMlKyCni@crud.moi434j.mongodb.net/crud-poc?retryWrites=true&w=majority&appName=crud',
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }
-)
+// Conectar MongoDB Atlas usando variable de entorno
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB conectado'))
   .catch(err => console.error(err));
 
@@ -27,7 +21,7 @@ mongoose.connection.on('connected', () => {
   console.log('DB actual:', mongoose.connection.db.databaseName);
 });
 
-// Modelo ejemplo: Contactos
+// Modelo Contact
 const ContactSchema = new mongoose.Schema({
   firstName: String,
   lastName: String,
@@ -65,4 +59,4 @@ app.delete('/contacts/:id', async (req, res) => {
 });
 
 // Iniciar servidor
-app.listen(port, () => console.log(`Servidor escuchando en http://localhost:${port}`));
+app.listen(port, () => console.log(`Servidor escuchando en el puerto ${port}`));
