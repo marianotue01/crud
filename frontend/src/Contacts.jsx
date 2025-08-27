@@ -61,14 +61,15 @@ export default function Contacts() {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-6 text-gray-8100">Contacts Dashboard</h1>
+      <h1 className="text-4xl font-bold mb-6 text-gray-800">Contacts Dashboard</h1>
 
       {/* Formulario */}
       <div className="mb-6 flex flex-wrap gap-3">
         {['firstName', 'lastName', 'email', 'country'].map((field) => (
           <input
             key={field}
-            className="border rounded-lg px-4 py-2 text-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className={`border rounded-lg px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400
+              ${editId ? 'bg-blue-100 text-blue-800 font-semibold' : 'bg-white text-gray-700'}`}
             placeholder={field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
             value={form[field]}
             onChange={(e) => setForm({ ...form, [field]: e.target.value })}
@@ -96,7 +97,12 @@ export default function Contacts() {
           </thead>
           <tbody>
             {contacts.map((c) => (
-              <tr key={c._id} className="hover:bg-gray-100 transition-colors">
+              <tr
+                key={c._id}
+                className={`transition-colors ${
+                  editId === c._id ? 'bg-blue-50' : 'hover:bg-gray-100'
+                }`}
+              >
                 <td className="px-6 py-3 text-gray-800">{c.firstName}</td>
                 <td className="px-6 py-3 text-gray-800">{c.lastName}</td>
                 <td className="px-6 py-3 text-gray-800">{c.email}</td>
