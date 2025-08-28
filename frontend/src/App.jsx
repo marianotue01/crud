@@ -17,7 +17,7 @@ import './App.css'
 
 function App() {
   // -------------------------
-  // Section: State setup
+  // Section: State setup.
   // -------------------------
   // 'count' state is currently not used but could be used for future interactivity
   const [count, setCount] = useState(0)
