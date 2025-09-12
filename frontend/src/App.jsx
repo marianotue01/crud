@@ -11,7 +11,7 @@ Summary:
 ==================================================
 */
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Contacts from './Contacts'
 import './App.css'
 
@@ -21,6 +21,13 @@ function App() {
   // -------------------------
   // 'count' state is currently not used but could be used for future interactivity
   const [count, setCount] = useState(0)
+
+  // -------------------------
+  // Section: Browser title
+  // -------------------------
+  useEffect(() => {
+    document.title = "CRUD Contact Manager"
+  }, [])
 
   // -------------------------
   // Section: Rendering
